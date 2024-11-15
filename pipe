@@ -1,0 +1,38 @@
+pipeline {
+    agent any  // This specifies where the pipeline will run (on any available agent)
+
+    stages {  // This is where you define the stages of your pipeline
+        stage('Build') {
+            steps {
+                // Commands for the build process, e.g., compile code
+                sh 'echo Building project...'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                // Commands for the test process, e.g., run tests
+                sh 'echo Running tests...'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                // Commands for the deploy process, e.g., deploy the app
+                sh 'echo Deploying project...'
+            }
+        }
+    }
+
+    post {  // This block runs after the pipeline finishes
+        always {
+            echo 'This will always run after the pipeline finishes'
+        }
+        success {
+            echo 'This will run if the pipeline is successful'
+        }
+        failure {
+            echo 'This will run if the pipeline fails'
+        }
+    }
+}
